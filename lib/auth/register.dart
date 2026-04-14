@@ -12,7 +12,7 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPhonePageState extends State<RegisterPage> {
   String selectedDialCode = '+998';
-
+ 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;

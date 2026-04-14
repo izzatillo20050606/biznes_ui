@@ -1,4 +1,4 @@
-import 'package:biznes_ui/slash/slash1.dart';
+import 'package:biznes_ui/widgets/bottomNavigatorBar.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -12,7 +12,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Slash1(),
+      home: BottomNB(),   
+          
     );
   }
 }
