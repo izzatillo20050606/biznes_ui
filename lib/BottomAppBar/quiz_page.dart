@@ -17,7 +17,14 @@ class QuizPage extends StatelessWidget {
           ),
         ),
         backgroundColor: Colors.white,
-        actions: [IconButton(onPressed: (){MaterialPageRoute(builder: (context) => const NotificationPage());}, icon: Icon( Icons.notifications, color: Colors.yellow))],
+        actions: [
+          IconButton(
+            onPressed: () {
+              MaterialPageRoute(builder: (context) => const NotificationPage());
+            },
+            icon: Icon(Icons.notifications, color: Colors.yellow),
+          ),
+        ],
       ),
       body: Center(
         child: Column(

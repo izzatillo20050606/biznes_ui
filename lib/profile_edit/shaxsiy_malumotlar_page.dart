@@ -30,9 +30,9 @@ class _ShaxsiyMalumotlarPageState extends State<ShaxsiyMalumotlarPage> {
       appBar: AppBar(title: Text("Shaxsiy malumotlar")),
       body: Padding(
         padding: EdgeInsetsGeometry.all(20),
-        child: Column(crossAxisAlignment: CrossAxisAlignment.start,
+        child: Column(
           children: [
-            Text("To'liq ism", style: TextStyle(color: Colors.grey,fontSize: 22)),
+            Text("To'liq ism", style: TextStyle(color: Colors.grey)),
             TextField(
               textAlign: TextAlign.start,
               controller: userController,
@@ -51,7 +51,7 @@ class _ShaxsiyMalumotlarPageState extends State<ShaxsiyMalumotlarPage> {
               onChanged: (v) => user.name = v,
             ),
             SizedBox(height: 20),
-            Text("Foydalanuvchi nomi ", style: TextStyle(color: Colors.grey,fontSize: 22)),
+            Text("Foydalanuvchi nomi ", style: TextStyle(color: Colors.grey)),
             TextField(
               textAlign: TextAlign.start,
               controller: nicnameController,

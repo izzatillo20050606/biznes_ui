@@ -1,3 +1,4 @@
+import 'package:biznes_ui/BottomAppBar/analistk_page.dart';
 import 'package:biznes_ui/BottomAppBar/boshqaruv_paneli.dart';
 import 'package:biznes_ui/BottomAppBar/profile_page.dart';
 import 'package:biznes_ui/BottomAppBar/quiz_page.dart';
@@ -14,7 +15,7 @@ class BottomNB extends StatefulWidget {
 class _BottomNBState extends State<BottomNB> {
   List<Widget> myList = [
     BoshqaruvPaneli(),
-    GoalPage(),
+    AnalistkPage(),
     QuizPage(),
     ProfilePage(),
   ];
