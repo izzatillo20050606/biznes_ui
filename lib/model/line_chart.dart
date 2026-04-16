@@ -5,7 +5,6 @@ class LineChartModel {
   final double y;
 
   LineChartModel({required this.x, required this.y});
-// getData ozgargan ekan
   static List<LineChartModel> getData() {
     final data = <double>[2, 4, 6, 11, 3, 6, 4];
 

@@ -27,6 +27,8 @@ class AllActivePage extends StatelessWidget {
               child: ListView.builder(
                 itemCount: history.length,
                 itemBuilder: (context, i) {
+                  final item = history[i];
+
                   return Container(
                     margin: const EdgeInsets.only(bottom: 10),
                     padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -43,15 +45,82 @@ class AllActivePage extends StatelessWidget {
                     ),
 
                     child: ListTile(
+                      onTap: () {
+                        showModalBottomSheet(
+                          context: context,
+                          isScrollControlled: true,
+                          backgroundColor: Colors.transparent,
+                          builder: (context) {
+                            return Container(
+                              padding: EdgeInsets.all(20),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.vertical(
+                                  top: Radius.circular(20),
+                                ),
+                              ),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  // drag indicator
+                                  Container(
+                                    width: 40,
+                                    height: 4,
+                                    margin: EdgeInsets.only(bottom: 10),
+                                    decoration: BoxDecoration(
+                                      color: Colors.grey[300],
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                  ),
+
+                                  Text(
+                                    "Tranzaksiya",
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+
+                                  SizedBox(height: 20),
+
+                                  ListTile(
+                                    leading: const CircleAvatar(
+                                      backgroundColor: Colors.blue,
+                                      child: Icon(Icons.attach_money,
+                                          color: Colors.white),
+                                    ),
+                                    title: Text(item["title"]),
+                                    subtitle: Text(
+                                      "Sana: ${item["time"] ?? "Noma'lum"}",
+                                    ),
+                                    trailing: Text(
+                                      item["amount"],
+                                      style: TextStyle(
+                                        color: item["color"],
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+
+                                  SizedBox(height: 20),
+
+                              
+                                ],
+                              ),
+                            );
+                          },
+                        );
+                      },
+
                       leading: const CircleAvatar(
                         backgroundColor: Colors.blue,
                         child: Icon(Icons.attach_money, color: Colors.white),
                       ),
-                      title: Text(history[i]["title"]),
+                      title: Text(item["title"]),
                       trailing: Text(
-                        history[i]["amount"],
+                        item["amount"],
                         style: TextStyle(
-                          color: history[i]["color"],
+                          color: item["color"],
                           fontWeight: FontWeight.bold,
                         ),
                       ),

@@ -2,23 +2,53 @@ import 'package:biznes_ui/BottomAppBar/analistk_page.dart';
 import 'package:biznes_ui/BottomAppBar/boshqaruv_paneli.dart';
 import 'package:biznes_ui/BottomAppBar/profile_page.dart';
 import 'package:biznes_ui/BottomAppBar/quiz_page.dart';
+import 'package:biznes_ui/model/line_chart.dart';
 import 'package:flutter/material.dart';
 
 class BottomNB extends StatefulWidget {
-  const BottomNB({super.key});
+  BottomNB({super.key});
 
   @override
   State<BottomNB> createState() => _BottomNBState();
 }
 
 class _BottomNBState extends State<BottomNB> {
-  List<Widget> myList = [
+  List<Widget> get myList => [
     BoshqaruvPaneli(),
     AnalistkPage(),
     QuizPage(),
     ProfilePage(),
   ];
   int myIndex = 0;
+List<Map<String, dynamic>> history = [
+  {
+    "title": "Oziq-ovqat",
+    "amount": "-50 000 so'm",
+    "color": Colors.red,
+    "time": "16.04.2026",
+    "category": "Ovqat",
+    "desc": "Harajat",
+    "balance": "500 000 so'm",
+  },
+  {
+    "title": "Maosh",
+    "amount": "+2 000 000 so'm",
+    "color": Colors.green,
+    "time": "15.04.2026",
+    "category": "Daromad",
+    "desc": "Kirim",
+    "balance": "550 000 so'm",
+  },
+];
+ List<LineChartModel> points = [
+  LineChartModel(x:0, y:20),
+  LineChartModel(x:1, y:30),
+  LineChartModel(x:2, y:25),
+  LineChartModel(x:3, y:40),
+  LineChartModel(x:4, y:35),
+  LineChartModel(x:5, y:50),
+  LineChartModel(x:6, y:45),
+];
   @override
   Widget build(BuildContext context) {
     return Scaffold(

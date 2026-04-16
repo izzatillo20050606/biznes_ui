@@ -369,10 +369,10 @@ class BalanceCard extends StatelessWidget {
                               ),
                               Container(
                                 height: 6,
-                                width: 20,
+                                width: 250,
                                 decoration: BoxDecoration(
                                   gradient: LinearGradient(
-                                    colors: [Colors.greenAccent, Colors.green],
+                                    colors: [Colors.greenAccent, const Color.fromARGB(255, 53, 173, 57)],
                                     begin: Alignment.centerLeft,
                                     end: Alignment.centerRight,
                                   ),
