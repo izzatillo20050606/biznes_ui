@@ -2,7 +2,6 @@ import 'dart:ui';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:biznes_ui/BOSHQARUV_PANELI/all_active_page.dart';
-import 'package:biznes_ui/BOSHQARUV_PANELI/delete_page.dart';
 import 'package:biznes_ui/BOSHQARUV_PANELI/edit.dart';
 import 'package:biznes_ui/BOSHQARUV_PANELI/notication_page.dart';
 import 'package:biznes_ui/BOSHQARUV_PANELI/daromad_add_page.dart';
@@ -249,14 +248,102 @@ class BalanceCard extends StatelessWidget {
                                 );
                               }),
                               const SizedBox(width: 8),
-                              _iconBtn(Icons.delete, () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (_) => const DeletePage(),
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(12),
+                                child: BackdropFilter(
+                                  filter: ImageFilter.blur(
+                                    sigmaX: 10,
+                                    sigmaY: 10,
                                   ),
-                                );
-                              }),
+                                  child: Container(
+                                    color: Colors.white.withOpacity(0.1),
+                                    child: IconButton(
+                                      icon: Icon(
+                                        Icons.delete,
+                                        color: Colors.white,
+                                      ),
+                                      onPressed: () => showDialog(
+                                        context: context,
+                                        builder: (context) {
+                                          return AlertDialog(
+                                            backgroundColor: Colors.white,
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(16),
+                                            ),
+                                            title: Text(
+                                              "Maqsadni o'chirasizmi ?",
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            content: Text(
+                                              "Maqsad ro'yxatdan olib tashlanadi.\n Hamyon balansi o'zgarmaydi.",
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(fontSize: 14),
+                                            ),
+                                            actionsAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            actions: [
+                                              SizedBox(
+                                                width: 120,
+                                                height: 45,
+                                                child: ElevatedButton(
+                                                  onPressed: () {
+                                                    Navigator.pop(context);
+                                                  },
+                                                  style: ElevatedButton.styleFrom(
+                                                    backgroundColor:
+                                                        Colors.grey.shade200,
+                                                    foregroundColor:
+                                                        Colors.black,
+                                                    shape: RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                            12,
+                                                          ),
+                                                    ),
+                                                  ),
+                                                  child: Text(
+                                                    textAlign: TextAlign.center,
+                                                    " Bekor ",
+                                                  ),
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                width: 120,
+                                                height: 45,
+                                                child: ElevatedButton(
+                                                  onPressed: () {
+                                                    Navigator.pop(context);
+                                                  },
+                                                  style: ElevatedButton.styleFrom(
+                                                    backgroundColor: Colors.red,
+                                                    foregroundColor:
+                                                        Colors.white,
+                                                    shape: RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                            12,
+                                                          ),
+                                                    ),
+                                                  ),
+                                                  child: Text(
+                                                    "O'chirish",
+                                                    textAlign: TextAlign.center,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          );
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
                             ],
                           ),
                           Align(

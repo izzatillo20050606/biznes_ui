@@ -66,113 +66,110 @@ class _ProfilePageState extends State<ProfilePage> {
                           context: context,
                           builder: (context) {
                             return AlertDialog(
-                              title: SingleChildScrollView(
-                                scrollDirection: Axis.vertical,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Text("⚠️", style: TextStyle(fontSize: 44)),
-                                    Text(
-                                      "Hisobni o'chirish ",
-                                      style: TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.black,
+                              title: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Text("⚠️", style: TextStyle(fontSize: 44)),
+                                  Text(
+                                    "Hisobni o'chirish ",
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                  Text(
+                                    "Hisobingizni o'chirishni xohlaysizmi? ",
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.grey,
+                                    ),
+                                  ),
+                                  Container(
+                                    width: 270,
+                                    height: 150,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(12),
+                                      color: Color.fromARGB(
+                                        252,
+                                        253,
+                                        171,
+                                        167,
                                       ),
                                     ),
-                                    Text(
-                                      "Hisobingizni o'chirishni xohlaysizmi? ",
-                                      style: TextStyle(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.grey,
-                                      ),
-                                    ),
-                                    Container(
-                                      width: 270,
-                                      height: 150,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(12),
-                                        color: Color.fromARGB(
-                                          252,
-                                          253,
-                                          171,
-                                          167,
-                                        ),
-                                      ),
-                                      child: Text(
-                                        '''\n  ❌ Diqqat! Quyidagilar butunlay o'chiriladi va qaytarib bo'lmaydi:\n\n
+                                    child: Text(
+                                      '''\n  ❌ Diqqat! Quyidagilar butunlay o'chiriladi va qaytarib bo'lmaydi:\n\n
     • Barcha shaxsiy ma'lumotlar
     • Barcha tejash maqsadlari
     • Barcha daromad va xarajat tarixi
     • Profil rasmi va sozlamalar''',
-                                        style: TextStyle(fontSize: 12),
-                                        textAlign: TextAlign.start,
-                                      ),
+                                      style: TextStyle(fontSize: 12),
+                                      textAlign: TextAlign.start,
                                     ),
-                                    SizedBox(height: 10),
-                                    SizedBox(
-                                      width: double.infinity,
-                                      height: 45,
-                                      child: ElevatedButton(
-                                        onPressed: () {
-                                          Navigator.pushAndRemoveUntil(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) =>
-                                                  RegisterPage(),
-                                            ),
-                                            (route) => false,
-                                          );
-                                        },
-                                        style: ElevatedButton.styleFrom(
-                                          backgroundColor: Colors.red,
-                                          foregroundColor: Colors.white,
-                                          elevation: 5,
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(
-                                              15,
-                                            ),
+                                  ),
+                                  SizedBox(height: 10),
+                                  SizedBox(
+                                    width: double.infinity,
+                                    height: 45,
+                                    child: ElevatedButton(
+                                      onPressed: () {
+                                        Navigator.pushAndRemoveUntil(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                RegisterPage(),
                                           ),
-                                        ),
-                                        child: Text(
-                                          " Ha, o'chirish ",
-                                          style: TextStyle(
-                                            fontSize: 16,
-                                            color: Colors.white,
+                                          (route) => false,
+                                        );
+                                      },
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: Colors.red,
+                                        foregroundColor: Colors.white,
+                                        elevation: 5,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(
+                                            15,
                                           ),
                                         ),
                                       ),
-                                    ),
-                                    SizedBox(height: 10),
-                                    SizedBox(
-                                      width: double.infinity,
-                                      height: 45,
-                                      child: ElevatedButton(
-                                        onPressed: () {
-                                          Navigator.pop(context);
-                                        },
-                                        style: ElevatedButton.styleFrom(
-                                          backgroundColor: Colors.white,
-                                          elevation: 5,
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(
-                                              15,
-                                            ),
-                                          ),
-                                        ),
-                                        child: Text(
-                                          "Bekor qilish",
-                                          style: TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold,
-                                          ),
+                                      child: Text(
+                                        " Ha, o'chirish ",
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          color: Colors.white,
                                         ),
                                       ),
                                     ),
-                                    SizedBox(height: 10),
-                                  ],
-                                ),
+                                  ),
+                                  SizedBox(height: 10),
+                                  SizedBox(
+                                    width: double.infinity,
+                                    height: 45,
+                                    child: ElevatedButton(
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: Colors.white,
+                                        elevation: 5,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(
+                                            15,
+                                          ),
+                                        ),
+                                      ),
+                                      child: Text(
+                                        "Bekor qilish",
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(height: 10),
+                                ],
                               ),
                             );
                           },
