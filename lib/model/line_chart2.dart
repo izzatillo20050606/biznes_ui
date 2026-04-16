@@ -9,14 +9,15 @@ class LineChartWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(height: 100,width: double.infinity,
+    return SizedBox(
+      height: 100,
+      width: double.infinity,
       child: LineChart(
-        LineChartData(backgroundColor: Colors.greenAccent,
+        LineChartData(
+          backgroundColor: Colors.white,
           lineBarsData: [
             LineChartBarData(
-              spots: points
-                  .map((point) => FlSpot(point.x, point.y))
-                  .toList(),
+              spots: points.map((point) => FlSpot(point.x, point.y)).toList(),
               isCurved: true,
               barWidth: 3,
               dotData: const FlDotData(show: true),

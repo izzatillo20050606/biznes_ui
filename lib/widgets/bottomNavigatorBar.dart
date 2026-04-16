@@ -2,7 +2,6 @@ import 'package:biznes_ui/BottomAppBar/analistk_page.dart';
 import 'package:biznes_ui/BottomAppBar/boshqaruv_paneli.dart';
 import 'package:biznes_ui/BottomAppBar/profile_page.dart';
 import 'package:biznes_ui/BottomAppBar/quiz_page.dart';
-import 'package:biznes_ui/goal/goal.dart';
 import 'package:flutter/material.dart';
 
 class BottomNB extends StatefulWidget {

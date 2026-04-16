@@ -15,20 +15,31 @@ class _AnalistkPageState extends State<AnalistkPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white70,
+      backgroundColor: Colors.grey.shade200,
       appBar: AppBar(
         title: const Text("Tahlil"),
+        backgroundColor: Colors.white,
         actions: [
-          IconButton(
-            icon: const Icon(Icons.notifications, color: Colors.amber),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const NotificationPage(),
-                ),
-              );
-            },
+          Container(
+            height: 40,
+            width: 40,
+            margin: const EdgeInsets.only(right: 12),
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8),
+              color: Colors.grey.shade300,
+            ),
+            child: IconButton(
+              icon: const Icon(Icons.notifications, color: Colors.amber),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const NotificationPage(),
+                  ),
+                );
+              },
+            ),
           ),
         ],
       ),
@@ -153,14 +164,14 @@ class _AnalistkPageState extends State<AnalistkPage> {
                 ),
               ],
             ),
-
+            SizedBox(height: 12),
             Container(
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(12),
               ),
-              child: LineChartWidget(LineChartModel.getData(),),
+              child: LineChartWidget(LineChartModel.getData()),
             ),
 
             const SizedBox(height: 12),

@@ -8,7 +8,7 @@ class AllActivePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(248, 225, 225, 216),
+      backgroundColor: Colors.white,
       appBar: AppBar(
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.black),
