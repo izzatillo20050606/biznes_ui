@@ -207,6 +207,7 @@ class BalanceCard extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
+                      
                       Row(
                         children: [
                           const Text(
