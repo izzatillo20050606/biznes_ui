@@ -93,16 +93,16 @@ class CallCenterPage extends StatelessWidget {
                       onTap: () {
                         print("Telegram bosildi");
                       },
-                    ),
+                    ),SizedBox(height: 8,),
                     Text(
                       textAlign: TextAlign.start,
                       "Xabar yozing",
                       style: TextStyle(
-                        fontSize: 12,
+                        fontSize: 22,
                         color: Colors.black,
                         fontWeight: FontWeight.bold,
                       ),
-                    ),
+                    ),SizedBox(height: 8,),
                     TextField(
                       maxLines: 3,
                       maxLength: 150,

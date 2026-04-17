@@ -1,14 +1,14 @@
 import 'package:biznes_ui/auth/register.dart';
+import 'package:biznes_ui/l10n/app_localizations.dart';
 import 'package:biznes_ui/model/user_model.dart';
 import 'package:biznes_ui/profile_edit/FRQ_page.dart';
-import 'package:biznes_ui/profile_edit/bio_page.dart';
 import 'package:biznes_ui/profile_edit/call_center_page.dart';
-import 'package:biznes_ui/profile_edit/phone_page.dart';
-import 'package:biznes_ui/profile_edit/shaxsiy_malumotlar_page.dart';
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatefulWidget {
-  const ProfilePage({super.key});
+  final Function(String) changeLang;
+
+  const ProfilePage({super.key, required this.changeLang});
 
   @override
   State<ProfilePage> createState() => _ProfilePageState();
@@ -17,6 +17,7 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   bool darkMode = false;
   bool notification = true;
+
   UserModel user = UserModel(
     name: "Alisher Abdullayev",
     username: "@alisher_99",
@@ -24,10 +25,14 @@ class _ProfilePageState extends State<ProfilePage> {
     phone: "+998 90 123 45 67",
     bio: "O'zingiz haqida yozing",
   );
+
   @override
   Widget build(BuildContext context) {
+    final t = AppLocalizations.of(context)!;
+
     return Scaffold(
       backgroundColor: const Color(0xFFF2F4F7),
+
       body: Column(
         children: [
           Container(
@@ -42,24 +47,23 @@ class _ProfilePageState extends State<ProfilePage> {
               gradient: LinearGradient(
                 colors: [Color(0xFF3A6FE2), Color(0xFF5B8DEF)],
               ),
-              borderRadius: BorderRadius.only(),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text(
-                      "Profil",
-                      style: TextStyle(color: Colors.white, fontSize: 20),
+
+                    Text(
+                      t.profile,
+                      style: const TextStyle(color: Colors.white, fontSize: 20),
                     ),
+
                     ElevatedButton.icon(
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.white,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8),
-                        ),
                       ),
                       onPressed: () {
                         showDialog(
@@ -67,266 +71,135 @@ class _ProfilePageState extends State<ProfilePage> {
                           builder: (context) {
                             return AlertDialog(
                               title: Column(
-                                crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  Text("⚠️", style: TextStyle(fontSize: 44)),
-                                  Text(
-                                    "Hisobni o'chirish ",
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black,
-                                    ),
+                                  const Text("⚠️", style: TextStyle(fontSize: 40)),
+                                  Text(t.delete_account),
+                                  Text(t.delete_warning_text),
+                                ],
+                              ),
+                              actions: [
+                                TextButton(
+                                  onPressed: () => Navigator.pop(context),
+                                  child: Text(t.cancel),
+                                ),
+                                ElevatedButton(
+                                  style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
+                                  onPressed: () {
+                                    Navigator.pushAndRemoveUntil(
+                                      context,
+                                      MaterialPageRoute(builder: (_) => RegisterPage()),
+                                      (route) => false,
+                                    );
+                                  },
+                                  child: Text(t.confirm_delete),
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                      },
+                      icon: const Icon(Icons.logout, size: 16),
+                      label: Text(t.logout),
+                    ),
+                  ],
+                ),
+
+                const SizedBox(height: 20),
+
+                Row(
+                  children: [
+                    const CircleAvatar(radius: 30, child: Icon(Icons.person)),
+                    const SizedBox(width: 12),
+
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(user.name, style: const TextStyle(color: Colors.white)),
+                        Text(user.username, style: const TextStyle(color: Colors.white70)),
+                        Text("${user.age} ${t.age}", style: const TextStyle(color: Colors.white70)),
+                      ],
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+
+          Expanded(
+            child: ListView(
+              padding: const EdgeInsets.all(16),
+              children: [
+
+                buildCard([
+                  buildItem(Icons.person, t.personal_info, subtitle: user.age),
+                  buildItem(Icons.phone, t.phone, subtitle: user.phone),
+                  buildItem(Icons.edit, t.bio, subtitle: user.bio),
+                ]),
+
+                buildCard([
+                  switchItem(Icons.dark_mode, t.dark_mode, darkMode, (v) {
+                    setState(() => darkMode = v);
+                  }),
+                  switchItem(Icons.notifications, t.notifications, notification, (v) {
+                    setState(() => notification = v);
+                  }),
+                ]),
+
+                buildCard([
+                  buildItem(Icons.help, t.faq, onTap: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (_) => const FrqPage()));
+                  }),
+
+                  buildItem(Icons.support, t.support, onTap: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (_) => const CallCenterPage()));
+                  }),
+
+                  Padding(
+                    padding: const EdgeInsets.only(left: 8),
+                    child: ListTile(
+                      leading: const Icon(Icons.language),
+                      title: Text(t.change_language),
+                      trailing: const Icon(Icons.arrow_forward_ios, size: 16),
+                      onTap: () {
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                              title: Text(t.change_language),
+                              content: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  ElevatedButton(
+                                    onPressed: () {
+                                      widget.changeLang('uz');
+                                      Navigator.pop(context);
+                                    },
+                                    child: const Text("UZ"),
                                   ),
-                                  Text(
-                                    "Hisobingizni o'chirishni xohlaysizmi? ",
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.grey,
-                                    ),
+                                  ElevatedButton(
+                                    onPressed: () {
+                                      widget.changeLang('ru');
+                                      Navigator.pop(context);
+                                    },
+                                    child: const Text("RU"),
                                   ),
-                                  Container(
-                                    width: 270,
-                                    height: 150,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(12),
-                                      color: Color.fromARGB(
-                                        252,
-                                        253,
-                                        171,
-                                        167,
-                                      ),
-                                    ),
-                                    child: Text(
-                                      '''\n  ❌ Diqqat! Quyidagilar butunlay o'chiriladi va qaytarib bo'lmaydi:\n\n
-    • Barcha shaxsiy ma'lumotlar
-    • Barcha tejash maqsadlari
-    • Barcha daromad va xarajat tarixi
-    • Profil rasmi va sozlamalar''',
-                                      style: TextStyle(fontSize: 12),
-                                      textAlign: TextAlign.start,
-                                    ),
+                                  ElevatedButton(
+                                    onPressed: () {
+                                      widget.changeLang('en');
+                                      Navigator.pop(context);
+                                    },
+                                    child: const Text("EN"),
                                   ),
-                                  SizedBox(height: 10),
-                                  SizedBox(
-                                    width: double.infinity,
-                                    height: 45,
-                                    child: ElevatedButton(
-                                      onPressed: () {
-                                        Navigator.pushAndRemoveUntil(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) =>
-                                                RegisterPage(),
-                                          ),
-                                          (route) => false,
-                                        );
-                                      },
-                                      style: ElevatedButton.styleFrom(
-                                        backgroundColor: Colors.red,
-                                        foregroundColor: Colors.white,
-                                        elevation: 5,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(
-                                            15,
-                                          ),
-                                        ),
-                                      ),
-                                      child: Text(
-                                        " Ha, o'chirish ",
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(height: 10),
-                                  SizedBox(
-                                    width: double.infinity,
-                                    height: 45,
-                                    child: ElevatedButton(
-                                      onPressed: () {
-                                        Navigator.pop(context);
-                                      },
-                                      style: ElevatedButton.styleFrom(
-                                        backgroundColor: Colors.white,
-                                        elevation: 5,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(
-                                            15,
-                                          ),
-                                        ),
-                                      ),
-                                      child: Text(
-                                        "Bekor qilish",
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(height: 10),
                                 ],
                               ),
                             );
                           },
                         );
                       },
-                      icon: const Icon(Icons.logout, size: 16),
-                      label: const Text("Chiqish"),
                     ),
-                  ],
-                ),
-                const SizedBox(height: 20),
-                Row(
-                  children: [
-                    CircleAvatar(
-                      radius: 30,
-                      backgroundColor: Colors.white24,
-                      child: const Icon(Icons.person, size: 30),
-                    ),
-                    const SizedBox(width: 12),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          user.name,
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                          ),
-                        ),
-                        Text(
-                          user.username,
-                          style: const TextStyle(color: Colors.white70),
-                        ),
-                        Text(
-                          user.age + " yosh",
-                          style: const TextStyle(color: Colors.white70),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 10),
-                const Text(
-                  '"Har kuni ozinga tejash — katta orzularga yetkazadi."',
-                  style: TextStyle(color: Colors.white70),
-                ),
-              ],
-            ),
-          ),
-          Expanded(
-            child: ListView(
-              padding: const EdgeInsets.all(16),
-              children: [
-                buildCard([
-                  buildItem(
-                    subtitle: user.age,
-                    Icons.person,
-                    "Shaxsiy ma'lumotlar",
-                    onTap: () async {
-                      final result = await Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (_) =>
-                              ShaxsiyMalumotlarPage(userModel: user),
-                        ),
-                      );
-
-                      if (result != null) {
-                        setState(() {});
-                        user = result;
-                      }
-                    },
                   ),
 
-                  buildItem(
-                    Icons.phone,
-                    "Telefon raqami",
-                    subtitle: user.phone,
-                    onTap: () async {
-                      final result = await Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (_) => PhonePage(phone: user.phone),
-                        ),
-                      );
-
-                      if (result != null) {
-                        setState(() {
-                          user.phone = result;
-                        });
-                      }
-                    },
-                  ),
-                  buildItem(
-                    Icons.edit,
-                    "Bio",
-                    subtitle: user.bio,
-                    onTap: () async {
-                      final result = await Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (_) => BioPage(bio: user.bio),
-                        ),
-                      );
-
-                      if (result != null) {
-                        setState(() {
-                          user.bio = result;
-                        });
-                      }
-                    },
-                  ),
-                ]),
-
-                buildCard([
-                  switchItem(
-                    icon: Icons.dark_mode,
-                    title: "Qorong'i rejim",
-                    value: darkMode,
-                    onChanged: (v) {
-                      setState(() => darkMode = v);
-                    },
-                  ),
-                  switchItem(
-                    icon: Icons.notifications,
-                    title: "Bildirishnomalar",
-                    value: notification,
-                    onChanged: (v) {
-                      setState(() => notification = v);
-                    },
-                  ),
-                ]),
-
-                buildCard([
-                  buildItem(
-                    Icons.help,
-                    "Ko'p beriladigan savollar",
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (_) => const FrqPage()),
-                      );
-                    },
-                  ),
-                  buildItem(
-                    Icons.support,
-                    "Qo'llab-quvvatlash",
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (_) => const CallCenterPage(),
-                        ),
-                      );
-                    },
-                  ),
-                  buildItem(Icons.info_outline_rounded, "Ilova haqida"),
+                  buildItem(Icons.info, t.about_app),
                 ]),
               ],
             ),
@@ -366,12 +239,12 @@ class _ProfilePageState extends State<ProfilePage> {
     );
   }
 
-  Widget switchItem({
-    required IconData icon,
-    required String title,
-    required bool value,
-    required Function(bool) onChanged,
-  }) {
+  Widget switchItem(
+    IconData icon,
+    String title,
+    bool value,
+    Function(bool) onChanged,
+  ) {
     return ListTile(
       leading: CircleAvatar(
         backgroundColor: Colors.grey.shade100,
