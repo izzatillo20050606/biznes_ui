@@ -12,7 +12,7 @@ class QuizPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          t.gamesTitle, // "O'yinlar"
+          t.gamesTitle, 
           style: const TextStyle(
             color: Colors.black,
             fontWeight: FontWeight.bold,

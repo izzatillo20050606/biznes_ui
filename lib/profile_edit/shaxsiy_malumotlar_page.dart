@@ -70,7 +70,7 @@ class _ShaxsiyMalumotlarPageState extends State<ShaxsiyMalumotlarPage> {
               onChanged: (v) => user.username = v,
             ),
             SizedBox(height: 20),
-            Text("Yosh ", style: TextStyle(color: Colors.grey,fontSize: 22)),
+            Text("Yosh ", style: TextStyle(color: Colors.grey, fontSize: 22)),
             TextField(
               textAlign: TextAlign.start,
               controller: bioController,
@@ -95,6 +95,9 @@ class _ShaxsiyMalumotlarPageState extends State<ShaxsiyMalumotlarPage> {
                 Navigator.pop(context, user);
               },
               style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
                 backgroundColor: Colors.blue,
                 padding: const EdgeInsets.symmetric(
                   horizontal: 80,

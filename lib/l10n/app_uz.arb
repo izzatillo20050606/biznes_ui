@@ -48,5 +48,6 @@
   "comingSoon": "Tez orada...",
   "gameDescription": "Moliyaviy bilimlarni o'yin orqali o'rganadigan qiziqarli o'yinlar tayyorlanmoqda. Kutib turing!",
   "comingSoonButton": "🚀 Tez orada",
-  "comingSoonMessage": "Bu oddiy xabar!"
+  "comingSoonMessage": "Bu oddiy xabar!",
+  "testMode":"test mode"
 }

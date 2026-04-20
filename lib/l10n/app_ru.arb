@@ -48,5 +48,6 @@
   "comingSoon": "Скоро...",
   "gameDescription": "Готовятся интересные игры для изучения финансовых знаний. Оставайтесь с нами!",
   "comingSoonButton": "🚀 Скоро",
-  "comingSoonMessage": "Это простое сообщение!"
+  "comingSoonMessage": "Это простое сообщение!",
+  "testMode":"test mode ru"
 }

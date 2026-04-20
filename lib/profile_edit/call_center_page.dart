@@ -93,7 +93,8 @@ class CallCenterPage extends StatelessWidget {
                       onTap: () {
                         print("Telegram bosildi");
                       },
-                    ),SizedBox(height: 8,),
+                    ),
+                    SizedBox(height: 8),
                     Text(
                       textAlign: TextAlign.start,
                       "Xabar yozing",
@@ -102,7 +103,8 @@ class CallCenterPage extends StatelessWidget {
                         color: Colors.black,
                         fontWeight: FontWeight.bold,
                       ),
-                    ),SizedBox(height: 8,),
+                    ),
+                    SizedBox(height: 8),
                     TextField(
                       maxLines: 3,
                       maxLength: 150,
@@ -125,6 +127,9 @@ class CallCenterPage extends StatelessWidget {
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.blue,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
                       ),
                       child: const Text(
                         "Saqlash",
@@ -163,7 +168,7 @@ Widget buildItem(
 Future<void> openGmail() async {
   final Uri emailUri = Uri(
     scheme: "mailto",
-    
+
     path: "mailto:gulomovizzatillo19@gmail.com?subject=Salom&body=Yordam kerak",
   );
 

@@ -23,10 +23,12 @@ dependencies:
   dotted_border: ^2.1.0
   flutter_gen: ^5.13.0+1
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^6.0.0
+  build_runner: ^2.13.1
 
 flutter:
   uses-material-design: true

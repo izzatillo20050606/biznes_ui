@@ -2,7 +2,10 @@ import 'package:biznes_ui/auth/register.dart';
 import 'package:biznes_ui/l10n/app_localizations.dart';
 import 'package:biznes_ui/model/user_model.dart';
 import 'package:biznes_ui/profile_edit/FRQ_page.dart';
+import 'package:biznes_ui/profile_edit/bio_page.dart';
 import 'package:biznes_ui/profile_edit/call_center_page.dart';
+import 'package:biznes_ui/profile_edit/phone_page.dart';
+import 'package:biznes_ui/profile_edit/shaxsiy_malumotlar_page.dart';
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -51,11 +54,9 @@ class _ProfilePageState extends State<ProfilePage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-
                     Text(
                       t.profile,
                       style: const TextStyle(color: Colors.white, fontSize: 20),
@@ -63,6 +64,9 @@ class _ProfilePageState extends State<ProfilePage> {
 
                     ElevatedButton.icon(
                       style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
                         backgroundColor: Colors.white,
                       ),
                       onPressed: () {
@@ -72,7 +76,10 @@ class _ProfilePageState extends State<ProfilePage> {
                             return AlertDialog(
                               title: Column(
                                 children: [
-                                  const Text("⚠️", style: TextStyle(fontSize: 40)),
+                                  const Text(
+                                    "⚠️",
+                                    style: TextStyle(fontSize: 40),
+                                  ),
                                   Text(t.delete_account),
                                   Text(t.delete_warning_text),
                                 ],
@@ -83,11 +90,15 @@ class _ProfilePageState extends State<ProfilePage> {
                                   child: Text(t.cancel),
                                 ),
                                 ElevatedButton(
-                                  style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.red,
+                                  ),
                                   onPressed: () {
                                     Navigator.pushAndRemoveUntil(
                                       context,
-                                      MaterialPageRoute(builder: (_) => RegisterPage()),
+                                      MaterialPageRoute(
+                                        builder: (_) => RegisterPage(),
+                                      ),
                                       (route) => false,
                                     );
                                   },
@@ -114,9 +125,18 @@ class _ProfilePageState extends State<ProfilePage> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(user.name, style: const TextStyle(color: Colors.white)),
-                        Text(user.username, style: const TextStyle(color: Colors.white70)),
-                        Text("${user.age} ${t.age}", style: const TextStyle(color: Colors.white70)),
+                        Text(
+                          user.name,
+                          style: const TextStyle(color: Colors.white),
+                        ),
+                        Text(
+                          user.username,
+                          style: const TextStyle(color: Colors.white70),
+                        ),
+                        Text(
+                          "${user.age} ${t.age}",
+                          style: const TextStyle(color: Colors.white70),
+                        ),
                       ],
                     ),
                   ],
@@ -129,30 +149,85 @@ class _ProfilePageState extends State<ProfilePage> {
             child: ListView(
               padding: const EdgeInsets.all(16),
               children: [
-
                 buildCard([
-                  buildItem(Icons.person, t.personal_info, subtitle: user.age),
-                  buildItem(Icons.phone, t.phone, subtitle: user.phone),
-                  buildItem(Icons.edit, t.bio, subtitle: user.bio),
+                  buildItem(
+                    Icons.person,
+                    t.personal_info,
+                    subtitle: user.age,
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) =>
+                              ShaxsiyMalumotlarPage(userModel: user),
+                        ),
+                      );
+                    },
+                  ),
+
+                  buildItem(
+                    Icons.phone,
+                    t.phone,
+                    subtitle: user.phone,
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (_) => PhonePage(phone: '')),
+                      );
+                    },
+                  ),
+
+                  buildItem(
+                    Icons.edit,
+                    t.bio,
+                    subtitle: user.bio,
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (_) => BioPage(bio: '')),
+                      );
+                    },
+                  ),
                 ]),
 
                 buildCard([
                   switchItem(Icons.dark_mode, t.dark_mode, darkMode, (v) {
                     setState(() => darkMode = v);
                   }),
-                  switchItem(Icons.notifications, t.notifications, notification, (v) {
-                    setState(() => notification = v);
-                  }),
+                  switchItem(
+                    Icons.notifications,
+                    t.notifications,
+                    notification,
+                    (v) {
+                      setState(() => notification = v);
+                    },
+                  ),
                 ]),
 
                 buildCard([
-                  buildItem(Icons.help, t.faq, onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (_) => const FrqPage()));
-                  }),
+                  buildItem(
+                    Icons.help,
+                    t.faq,
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (_) => const FrqPage()),
+                      );
+                    },
+                  ),
 
-                  buildItem(Icons.support, t.support, onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (_) => const CallCenterPage()));
-                  }),
+                  buildItem(
+                    Icons.support,
+                    t.support,
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => const CallCenterPage(),
+                        ),
+                      );
+                    },
+                  ),
 
                   Padding(
                     padding: const EdgeInsets.only(left: 8),
@@ -167,7 +242,8 @@ class _ProfilePageState extends State<ProfilePage> {
                             return AlertDialog(
                               title: Text(t.change_language),
                               content: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
                                 children: [
                                   ElevatedButton(
                                     onPressed: () {

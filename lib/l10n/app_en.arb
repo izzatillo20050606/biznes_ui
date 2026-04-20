@@ -48,5 +48,6 @@
   "comingSoon": "Coming soon...",
   "gameDescription": "Exciting financial learning games are being prepared. Stay tuned!",
   "comingSoonButton": "🚀 Coming soon",
-  "comingSoonMessage": "This is a simple message!"
+  "comingSoonMessage": "This is a simple message!",
+  "testMode":"test Mode eng"
 }

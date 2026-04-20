@@ -39,10 +39,10 @@ class _MyAppState extends State<MyApp> {
       ],
 
       supportedLocales: const [
-        Locale('en'),
-        Locale('uz'),
-        Locale('ru'),
-      ],
+         Locale('en'),
+         Locale('uz'), 
+         Locale('ru'),
+         ],
 
       home: BottomNB(changeLang: changeLang),
     );

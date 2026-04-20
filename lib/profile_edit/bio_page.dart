@@ -56,7 +56,12 @@ class _BioPageState extends State<BioPage> {
               onPressed: () {
                 Navigator.pop(context, bio.text);
               },
-              style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blue,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+              ),
               child: const Text(
                 "Saqlash",
                 style: TextStyle(color: Colors.white),

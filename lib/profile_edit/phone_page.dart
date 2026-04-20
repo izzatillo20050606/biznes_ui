@@ -81,6 +81,9 @@ class _PhonePageState extends State<PhonePage> {
                 Navigator.pop(context, newPhone.text);
               },
               style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
                 backgroundColor: Colors.blue,
                 padding: const EdgeInsets.symmetric(
                   horizontal: 80,

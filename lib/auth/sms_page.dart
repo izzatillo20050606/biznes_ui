@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:biznes_ui/auth/info_page.dart';
+import 'package:biznes_ui/widgets/bottomNavigatorBar.dart';
 import 'package:flutter/material.dart';
 
 class SmsPage extends StatefulWidget {
@@ -45,7 +46,7 @@ class _VerifyCodePageState extends State<SmsPage> {
 
   void verify() {
     // ignore: unrelated_type_equality_checks
-    if (isFilled!=true) {
+    if (isFilled != true) {
       Navigator.push(
         context,
         MaterialPageRoute(builder: (_) => const InfoPage()),
@@ -139,10 +140,13 @@ class _VerifyCodePageState extends State<SmsPage> {
               const SizedBox(height: 30),
               GestureDetector(
                 onTap: () {
-                  verify(); 
+                  verify();
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const InfoPage()),
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          BottomNB(changeLang: (String p1) {}),
+                    ),
                   );
                 },
                 child: Container(
